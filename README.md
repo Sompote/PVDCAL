@@ -2,6 +2,12 @@
 
 Multilayer Prefabricated Vertical Drain (PVD) consolidation analysis tool that calculates settlement vs time using finite difference method.
 
+## 🌐 Try It Online
+
+**[Launch Interactive App on Hugging Face](https://huggingface.co/spaces/Sompote/PVDcal)** 🚀
+
+![Streamlit App Screenshot](Screenshot%202568-10-21%20at%2017.51.11.png)
+
 ## Features
 
 - **Multilayer soil profile support** - Handle multiple soil layers with different properties

@@ -12,6 +12,7 @@ build/
 
 # Output files (generated results)
 *.png
+!Screenshot*.png
 *.csv
 pvd_analysis_report.txt
 *.log
