@@ -1,0 +1,90 @@
+# PVD Consolidation with Vacuum Preloading
+# Example: Combined surcharge + vacuum with staged loading
+
+# Soil layers (from top to bottom)
+soil_layers:
+  - thickness: 8.0
+    Cv: 0.4
+    Ch: 1.8
+    RR: 0.05
+    CR: 0.30
+    sigma_ini: 40.0
+    sigma_p: 60.0
+    kh: 2.5
+    ks: 1.2
+
+  - thickness: 10.0
+    Cv: 0.3
+    Ch: 1.5
+    RR: 0.04
+    CR: 0.35
+    sigma_ini: 80.0
+    sigma_p: 80.0
+    kh: 2.0
+    ks: 1.0
+
+  - thickness: 7.0
+    Cv: 0.35
+    Ch: 1.6
+    RR: 0.045
+    CR: 0.32
+    sigma_ini: 130.0
+    sigma_p: 140.0
+    kh: 2.2
+    ks: 1.1
+
+# PVD installation properties
+pvd:
+  dw: 0.05                    # 50 mm drain
+  ds: 0.15                    # 150 mm smear zone
+  De: 1.2                     # 1.2 m triangular spacing
+  L_drain: 20.0               # 20 m drain depth
+  qw: 1000000000000.0         # Negligible well resistance
+  r_influence: 0.3            # Vacuum influence radius (m)
+                              # Default is De/4 = 0.3 m
+                              # Adjust based on soil type and drain spacing
+
+# Staged loading configuration
+# Each stage: start_time, surcharge, vacuum
+loading_stages:
+  # Stage 1: Install PVD and apply vacuum only
+  - start_time: 0.0
+    surcharge: 0.0
+    vacuum: 80.0              # 80 kPa vacuum (no fill yet)
+
+  # Stage 2: After 3 months, add partial surcharge
+  - start_time: 0.25          # 0.25 years = 3 months
+    surcharge: 40.0
+    vacuum: 80.0              # 40 kPa fill + 80 kPa vacuum = 120 kPa equivalent
+
+  # Stage 3: After 6 months, increase surcharge
+  - start_time: 0.5
+    surcharge: 70.0
+    vacuum: 80.0              # 70 kPa fill + 80 kPa vacuum = 150 kPa equivalent
+
+  # Stage 4: After 1.5 years, remove vacuum, full surcharge
+  - start_time: 1.5
+    surcharge: 100.0
+    vacuum: 0.0               # 100 kPa fill only (vacuum removed)
+
+# Analysis parameters
+analysis:
+  dt: 0.005                   # Small time step for staged loading
+  t_max: 3.0                  # 3 years analysis
+  n_points: 300
+
+  # Time points for detailed report
+  t_check:
+    - 0.1                     # During vacuum only
+    - 0.25                    # After 1st stage change
+    - 0.5                     # After 2nd stage change
+    - 1.0                     # During combined loading
+    - 1.5                     # After vacuum removal
+    - 2.0
+    - 3.0
+
+  # Consolidation profile times
+  t_profiles:
+    - 0.25                    # During vacuum phase
+    - 1.0                     # During combined phase
+    - 2.0                     # After vacuum removed

@@ -1,0 +1,74 @@
+# PVD Consolidation Analysis Input File
+# All units: m, kPa, years
+
+# Soil layers (from top to bottom)
+soil_layers:
+  - thickness: 5.0 # Layer thickness (m)
+    Cv: 0.5 # Vertical coefficient of consolidation (m²/year)
+    Ch: 1.5 # Horizontal coefficient of consolidation (m²/year)
+    RR: 0.05 # Recompression ratio
+    CR: 0.30 # Compression ratio
+    sigma_ini: 50.0 # Initial effective stress (kPa)
+    sigma_p: 80.0 # Preconsolidation pressure (kPa)
+    kh: 2.0 # Horizontal permeability (m/year)
+    ks: 1.0 # Smear zone permeability (m/year)
+
+  - thickness: 8.0
+    Cv: 0.3
+    Ch: 1.0
+    RR: 0.04
+    CR: 0.35
+    sigma_ini: 90.0
+    sigma_p: 90.0
+    kh: 1.5 # Lower permeability layer
+    ks: 0.75
+
+  - thickness: 7.0
+    Cv: 0.4
+    Ch: 1.2
+    RR: 0.045
+    CR: 0.32
+    sigma_ini: 140.0
+    sigma_p: 150.0
+    kh: 1.8
+    ks: 0.9
+
+# PVD installation properties
+pvd:
+  dw: 0.05 # Equivalent diameter of drain (m) - typically 50-100 mm
+  ds: 0.15 # Smear zone diameter (m) - typically 2-4 times dw
+  De:
+    1.5 # Equivalent diameter of unit cell (m)
+    # For triangular pattern: De = 1.05 × S
+    # For square pattern: De = 1.13 × S
+    # where S = drain spacing
+  L_drain:
+    20.0 # Total drain length (m)
+    # For two-way drainage: actual drain length
+    # For one-way drainage: 2 × actual drain length
+  qw:
+    100.0 # Well discharge capacity (m³/year)
+    # For negligible well resistance, use very large value (1e12)
+
+# Analysis parameters
+analysis:
+  surcharge: 100.0 # Applied surcharge load (kPa)
+  dt: 0.01 # Time step for finite difference (years)
+  t_max: 20.0 # Maximum time for analysis (years)
+  n_points: 200 # Number of points in settlement vs time curve
+
+  # Time points to check in report (years)
+  t_check:
+    - 0.1
+    - 0.5
+    - 1.0
+    - 2.0
+    - 5.0
+    - 10.0
+    - 20.0
+
+  # Times to generate consolidation profiles (years)
+  t_profiles:
+    - 0.5
+    - 2.0
+    - 10.0

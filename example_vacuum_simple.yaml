@@ -1,0 +1,49 @@
+# Simple Vacuum Preloading Example
+# Single stage: vacuum only (no surcharge)
+
+soil_layers:
+  - thickness: 12.0
+    Cv: 0.5
+    Ch: 2.0
+    RR: 0.05
+    CR: 0.30
+    sigma_ini: 50.0
+    sigma_p: 80.0
+    kh: 2.5
+    ks: 1.2
+
+pvd:
+  dw: 0.05
+  ds: 0.15
+  De: 1.5
+  L_drain: 12.0
+  qw: 1000000000000.0
+  r_influence: 0.375          # De/4 = 0.375 m
+
+# Simple configuration: no staged loading
+# Use single surcharge/vacuum values
+
+# In Python code, this would be:
+# analysis = PVDConsolidation(layers, pvd, surcharge=0, vacuum=80)
+
+# For YAML, define as single stage:
+loading_stages:
+  - start_time: 0.0
+    surcharge: 0.0
+    vacuum: 80.0              # 80 kPa vacuum only
+
+analysis:
+  dt: 0.01
+  t_max: 2.0
+  n_points: 200
+
+  t_check:
+    - 0.1
+    - 0.25
+    - 0.5
+    - 1.0
+    - 2.0
+
+  t_profiles:
+    - 0.5
+    - 1.0

@@ -1,0 +1,33 @@
+# Quick test input for PVD consolidation
+soil_layers:
+  - thickness: 10.0
+    Cv: 0.5
+    Ch: 2.0
+    RR: 0.05
+    CR: 0.30
+    sigma_ini: 50.0
+    sigma_p: 80.0
+    kh: 2.0
+    ks: 1.0
+
+pvd:
+  dw: 0.05
+  ds: 0.15
+  De: 1.5
+  L_drain: 10.0
+  qw: 1000000000000.0 # Negligible well resistance (1e12)
+
+analysis:
+  surcharge: 100.0
+  dt: 0.005
+  t_max: 2.0
+  n_points: 50
+
+  t_check:
+    - 0.1
+    - 0.25
+    - 0.5
+    - 1.0
+
+  t_profiles:
+    - 0.5

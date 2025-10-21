@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+*.egg-info/
+dist/
+build/
+
+# Output files (generated results)
+*.png
+*.csv
+pvd_analysis_report.txt
+*.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Internal documentation (keep only user-facing docs)
+ALGORITHM_EXPLANATION.md
+FINAL_SUMMARY.md
+DRAIN_LENGTH_FEATURE.md
+CHANGES_SUMMARY.md
+DRAINAGE_PATH_EXPLANATION.md
+VACUUM_IMPLEMENTATION_NOTES.md
+VACUUM_FEATURE_SUMMARY.md
